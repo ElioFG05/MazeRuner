@@ -1,0 +1,17 @@
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\bin\Debug\net9.0\1erProyectoCC.exe
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\bin\Debug\net9.0\1erProyectoCC.deps.json
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\bin\Debug\net9.0\1erProyectoCC.runtimeconfig.json
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\bin\Debug\net9.0\1erProyectoCC.dll
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\bin\Debug\net9.0\1erProyectoCC.pdb
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\bin\Debug\net9.0\Spectre.Console.dll
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\1erProyectoCC.csproj.AssemblyReference.cache
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\1erProyectoCC.GeneratedMSBuildEditorConfig.editorconfig
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\1erProyectoCC.AssemblyInfoInputs.cache
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\1erProyectoCC.AssemblyInfo.cs
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\1erProyectoCC.csproj.CoreCompileInputs.cache
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\1erProye.F2818A74.Up2Date
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\1erProyectoCC.dll
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\refint\1erProyectoCC.dll
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\1erProyectoCC.pdb
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\1erProyectoCC.genruntimeconfig.cache
+D:\Elio\Computer Science\Programacion\Proyecto(pdf-datos)\1erProyectoCC\obj\Debug\net9.0\ref\1erProyectoCC.dll
