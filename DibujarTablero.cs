@@ -1,5 +1,6 @@
 using Spectre.Console;
 using static GenerarTablero;
+
 public class TableroDrawer
 {
     // Método para dibujar el tablero en la consola usando Spectre.Console
@@ -22,8 +23,7 @@ public class TableroDrawer
                     Casilla.Obstaculo => Color.Grey,
                     Casilla.Trampa => Color.Red,
                     Casilla.Objeto => Color.Wheat1, // Los objetos se dibujan en color verde
-                    _=> Color.Grey // Las trampas se dibujan en color rojo
-                   
+                    _ => Color.Grey, // Las trampas se dibujan en color rojo
                 };
 
                 canvas.SetPixel(columna, fila, color); // Establecer el color del píxel en el canvas
@@ -38,8 +38,5 @@ public class TableroDrawer
 
         // Mostrar el canvas en la consola
         AnsiConsole.Write(canvas);
-
-        // Opcional: mostrar mensajes adicionales
-        Console.WriteLine("Tablero actualizado.");
     }
 }

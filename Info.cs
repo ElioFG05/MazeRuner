@@ -1,5 +1,5 @@
-using Spectre.Console;
 using System.Collections.Generic;
+using Spectre.Console;
 
 public class Informacion
 {
@@ -34,13 +34,16 @@ public class Informacion
                 ficha.Nombre,
                 $"{porcentajeVida}%", // Mostrar la vida como porcentaje
                 ficha.Habilidad,
-                ficha.Cooldown > 0 ? ficha.Cooldown.ToString() : "Listo");
+                ficha.Cooldown > 0 ? ficha.Cooldown.ToString() : "Listo"
+            );
         }
 
         // Refresca la tabla para mostrar la información actualizada en la consola
-        AnsiConsole.Live(tablaInformacion).Start(ctx =>
-        {
-            ctx.Refresh();
-        });
+        AnsiConsole
+            .Live(tablaInformacion)
+            .Start(ctx =>
+            {
+                ctx.Refresh();
+            });
     }
 }

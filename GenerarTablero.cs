@@ -10,11 +10,16 @@ public class GenerarTablero
         Camino,
         Obstaculo,
         Trampa,
-        Objeto
+        Objeto,
     }
 
     // Método principal para generar el tablero con trampas y obstáculos
-    public static (Casilla[,], List<(int fila, int columna, Trampa.Tipo tipo)>) Generar(int ancho, int alto, int cantidadTrampas, int cantidadObstaculos)
+    public static (Casilla[,], List<(int fila, int columna, Trampa.Tipo tipo)>) Generar(
+        int ancho,
+        int alto,
+        int cantidadTrampas,
+        int cantidadObstaculos
+    )
     {
         var tablero = new Casilla[alto, ancho];
         var random = new Random();
@@ -24,8 +29,8 @@ public class GenerarTablero
 
         if (!HayCaminosConectados(tablero)) // Verifica que los caminos estén conectados
         {
-        Console.WriteLine("Error: Los caminos no están completamente conectados.");
-        return (tablero, new List<(int, int, Trampa.Tipo)>());
+            Console.WriteLine("Error: Los caminos no están completamente conectados.");
+            return (tablero, new List<(int, int, Trampa.Tipo)>());
         }
 
         ColocarObstaculos(tablero, cantidadObstaculos, random);
@@ -42,7 +47,12 @@ public class GenerarTablero
         {
             for (int columna = 0; columna < tablero.GetLength(1); columna++)
             {
-                if (fila == 0 || fila == tablero.GetLength(0) - 1 || columna == 0 || columna == tablero.GetLength(1) - 1)
+                if (
+                    fila == 0
+                    || fila == tablero.GetLength(0) - 1
+                    || columna == 0
+                    || columna == tablero.GetLength(1) - 1
+                )
                 {
                     tablero[fila, columna] = Casilla.Obstaculo; // Bordes como obstáculos
                 }
@@ -67,7 +77,10 @@ public class GenerarTablero
             int nuevaFila = fila + df * 2;
             int nuevaColumna = columna + dc * 2;
 
-            if (EsPosicionValida(tablero, nuevaFila, nuevaColumna) && tablero[nuevaFila, nuevaColumna] == Casilla.Obstaculo)
+            if (
+                EsPosicionValida(tablero, nuevaFila, nuevaColumna)
+                && tablero[nuevaFila, nuevaColumna] == Casilla.Obstaculo
+            )
             {
                 tablero[fila + df, columna + dc] = Casilla.Camino; // Conecta el camino intermedio
                 GenerarCamino(tablero, nuevaFila, nuevaColumna, random); // Llamada recursiva
@@ -78,7 +91,10 @@ public class GenerarTablero
     // Verifica si una posición es válida dentro del tablero
     private static bool EsPosicionValida(Casilla[,] tablero, int fila, int columna)
     {
-        return fila > 0 && fila < tablero.GetLength(0) - 1 && columna > 0 && columna < tablero.GetLength(1) - 1;
+        return fila > 0
+            && fila < tablero.GetLength(0) - 1
+            && columna > 0
+            && columna < tablero.GetLength(1) - 1;
     }
 
     // Coloca obstáculos aleatorios en el tablero
@@ -105,7 +121,12 @@ public class GenerarTablero
     }
 
     // Coloca trampas aleatorias en el tablero y las guarda en la lista de trampas
-    public static void ColocarTrampas(Casilla[,] tablero, int cantidadTrampas, Random random, List<(int fila, int columna, Trampa.Tipo tipo)> trampas)
+    public static void ColocarTrampas(
+        Casilla[,] tablero,
+        int cantidadTrampas,
+        Random random,
+        List<(int fila, int columna, Trampa.Tipo tipo)> trampas
+    )
     {
         int trampasColocadas = 0;
         while (trampasColocadas < cantidadTrampas)
@@ -128,42 +149,52 @@ public class GenerarTablero
         return (Trampa.Tipo)tipo;
     }
 
-     
-     //Colocar Objetos
-public static void ColocarObjetos(Casilla[,] tablero, int cantidadObjetos, Random random)
-{
-    int objetosColocados = 0;
-
-    while (objetosColocados < cantidadObjetos)
+    //Colocar Objetos
+    public static void ColocarObjetos(Casilla[,] tablero, int cantidadObjetos, Random random)
     {
-        // Generar una posición aleatoria
-        int fila = random.Next(0, tablero.GetLength(0));
-        int columna = random.Next(0, tablero.GetLength(1));
+        int objetosColocados = 0;
 
-        // Verificar si la casilla está vacía (no tiene obstáculo ni trampa)
-        if (tablero[fila, columna] == Casilla.Camino)
+        while (objetosColocados < cantidadObjetos)
         {
-            // Colocar el objeto en la casilla
-            tablero[fila, columna] = Casilla.Objeto;
-            objetosColocados++;
+            // Generar una posición aleatoria
+            int fila = random.Next(0, tablero.GetLength(0));
+            int columna = random.Next(0, tablero.GetLength(1));
 
-            // Mostrar mensaje de colocación
-            Console.WriteLine($"Objeto colocado en ({fila}, {columna}).");
+            // Verificar si la casilla está vacía (no tiene obstáculo ni trampa)
+            if (tablero[fila, columna] == Casilla.Camino)
+            {
+                // Colocar el objeto en la casilla
+                tablero[fila, columna] = Casilla.Objeto;
+                objetosColocados++;
+
+                // Mostrar mensaje de colocación
+                Console.WriteLine($"Objeto colocado en ({fila}, {columna}).");
+            }
         }
     }
-}
-
-
 
     // Obtiene una posición aleatoria dentro del tablero
-    public static (int fila, int columna) ObtenerPosicionAleatoria(Casilla[,] tablero, Random random)
+    public static (int fila, int columna) ObtenerPosicionAleatoria(
+        Casilla[,] tablero,
+        Random random
+    )
     {
         while (true)
         {
             int fila = random.Next(tablero.GetLength(0));
             int columna = random.Next(tablero.GetLength(1));
-            if ((tablero[fila, columna] == Casilla.Camino || tablero[fila, columna] == Casilla.Obstaculo) &&
-                !(fila == 0 || fila == tablero.GetLength(0) - 1 || columna == 0 || columna == tablero.GetLength(1) - 1))
+            if (
+                (
+                    tablero[fila, columna] == Casilla.Camino
+                    || tablero[fila, columna] == Casilla.Obstaculo
+                )
+                && !(
+                    fila == 0
+                    || fila == tablero.GetLength(0) - 1
+                    || columna == 0
+                    || columna == tablero.GetLength(1) - 1
+                )
+            )
             {
                 return (fila, columna);
             }
@@ -188,7 +219,8 @@ public static void ColocarObjetos(Casilla[,] tablero, int cantidadObjetos, Rando
                     break;
                 }
             }
-            if (encontradoCamino) break;
+            if (encontradoCamino)
+                break;
         }
 
         // Revisa que todos los caminos estén conectados
@@ -209,7 +241,11 @@ public static void ColocarObjetos(Casilla[,] tablero, int cantidadObjetos, Rando
     // Realiza una búsqueda en profundidad (DFS) para marcar los caminos conectados
     private static void DFS(Casilla[,] tablero, bool[,] visitado, int fila, int columna)
     {
-        if (!EsPosicionValida(tablero, fila, columna) || visitado[fila, columna] || tablero[fila, columna] != Casilla.Camino)
+        if (
+            !EsPosicionValida(tablero, fila, columna)
+            || visitado[fila, columna]
+            || tablero[fila, columna] != Casilla.Camino
+        )
             return;
 
         visitado[fila, columna] = true;
