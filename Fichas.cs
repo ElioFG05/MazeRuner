@@ -105,25 +105,6 @@ public class Ficha
         }
     }
 
-    public void FinalizarTurno(Ficha ficha)
-    {
-        if (ficha.Cooldown > 0)
-        {
-            ficha.Cooldown--;
-        }
-
-        if (ficha.TurnosInmunidad > 0)
-        {
-            ficha.TurnosInmunidad--;
-            if (ficha.TurnosInmunidad == 0)
-            {
-                Console.WriteLine($"{ficha.Nombre} ya no tiene inmunidad temporal.");
-            }
-        }
-
-        // Otras lógicas de finalización de turno pueden ir aquí
-    }
-
     public bool PerderPuntos(int puntos)
     {
         if (TurnosInmunidad > 0)
@@ -276,9 +257,6 @@ public class Ficha
             Console.WriteLine($"{Nombre} ya tiene Inmunidad Temporal activa.");
         }
     }
-
-
-    
 
     // Incrementa los puntos de la ficha, hasta un máximo de 4
     private void Curar()

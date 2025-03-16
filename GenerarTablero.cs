@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 public class GenerarTablero
 {
     // Enum para representar los tipos de casillas en el tablero
@@ -24,7 +20,7 @@ public class GenerarTablero
         var tablero = new Casilla[alto, ancho];
         var random = new Random();
 
-        InicializarTablero(tablero);
+        InicializarTablero(tablero); //Todo como camino y  solo los bordes como obstaculos
         GenerarCamino(tablero, 1, 1, random); // Genera caminos desde (1,1)
 
         if (!HayCaminosConectados(tablero)) // Verifica que los caminos estén conectados
@@ -88,13 +84,40 @@ public class GenerarTablero
         }
     }
 
-    // Verifica si una posición es válida dentro del tablero
-    private static bool EsPosicionValida(Casilla[,] tablero, int fila, int columna)
+    private static bool HayCaminosConectados(Casilla[,] tablero)
     {
-        return fila > 0
-            && fila < tablero.GetLength(0) - 1
-            && columna > 0
-            && columna < tablero.GetLength(1) - 1;
+        bool[,] visitado = new bool[tablero.GetLength(0), tablero.GetLength(1)];
+
+        // Encuentra el primer camino para iniciar DFS
+        bool Caminoencontrado = false;
+        for (int i = 0; i < tablero.GetLength(0); i++)
+        {
+            for (int j = 0; j < tablero.GetLength(1); j++)
+            {
+                if (tablero[i, j] == Casilla.Camino)
+                {
+                    DFS(tablero, visitado, i, j);
+                    Caminoencontrado = true;
+                    break;
+                }
+            }
+            if (Caminoencontrado)
+                break;
+        }
+
+        // Revisa que todos los caminos estén conectados
+        for (int i = 0; i < tablero.GetLength(0); i++)
+        {
+            for (int j = 0; j < tablero.GetLength(1); j++)
+            {
+                if (tablero[i, j] == Casilla.Camino && !visitado[i, j])
+                {
+                    return false; // Hay caminos no conectados
+                }
+            }
+        }
+
+        return true; // Todos los caminos están conectados
     }
 
     // Coloca obstáculos aleatorios en el tablero
@@ -118,6 +141,33 @@ public class GenerarTablero
                 }
             }
         }
+    }
+
+    // Realiza una búsqueda en profundidad (DFS) para marcar los caminos conectados
+    private static void DFS(Casilla[,] tablero, bool[,] visitado, int fila, int columna)
+    {
+        if (
+            !EsPosicionValida(tablero, fila, columna)
+            || visitado[fila, columna]
+            || tablero[fila, columna] != Casilla.Camino
+        )
+            return;
+
+        visitado[fila, columna] = true;
+
+        DFS(tablero, visitado, fila - 1, columna); // Arriba
+        DFS(tablero, visitado, fila + 1, columna); // Abajo
+        DFS(tablero, visitado, fila, columna - 1); // Izquierda
+        DFS(tablero, visitado, fila, columna + 1); // Derecha
+    }
+
+    // Verifica si una posición es válida dentro del tablero
+    private static bool EsPosicionValida(Casilla[,] tablero, int fila, int columna)
+    {
+        return fila > 0
+            && fila < tablero.GetLength(0) - 1
+            && columna > 0
+            && columna < tablero.GetLength(1) - 1;
     }
 
     // Coloca trampas aleatorias en el tablero y las guarda en la lista de trampas
@@ -186,7 +236,7 @@ public class GenerarTablero
             if (
                 (
                     tablero[fila, columna] == Casilla.Camino
-                    || tablero[fila, columna] == Casilla.Obstaculo
+                /*|| tablero[fila, columna] == Casilla.Obstaculo*/
                 )
                 && !(
                     fila == 0
@@ -202,57 +252,4 @@ public class GenerarTablero
     }
 
     // Verifica si todos los caminos del tablero están conectados
-    private static bool HayCaminosConectados(Casilla[,] tablero)
-    {
-        bool[,] visitado = new bool[tablero.GetLength(0), tablero.GetLength(1)];
-
-        // Encuentra el primer camino para iniciar DFS
-        bool encontradoCamino = false;
-        for (int i = 0; i < tablero.GetLength(0); i++)
-        {
-            for (int j = 0; j < tablero.GetLength(1); j++)
-            {
-                if (tablero[i, j] == Casilla.Camino)
-                {
-                    DFS(tablero, visitado, i, j);
-                    encontradoCamino = true;
-                    break;
-                }
-            }
-            if (encontradoCamino)
-                break;
-        }
-
-        // Revisa que todos los caminos estén conectados
-        for (int i = 0; i < tablero.GetLength(0); i++)
-        {
-            for (int j = 0; j < tablero.GetLength(1); j++)
-            {
-                if (tablero[i, j] == Casilla.Camino && !visitado[i, j])
-                {
-                    return false; // Hay caminos no conectados
-                }
-            }
-        }
-
-        return true; // Todos los caminos están conectados
-    }
-
-    // Realiza una búsqueda en profundidad (DFS) para marcar los caminos conectados
-    private static void DFS(Casilla[,] tablero, bool[,] visitado, int fila, int columna)
-    {
-        if (
-            !EsPosicionValida(tablero, fila, columna)
-            || visitado[fila, columna]
-            || tablero[fila, columna] != Casilla.Camino
-        )
-            return;
-
-        visitado[fila, columna] = true;
-
-        DFS(tablero, visitado, fila - 1, columna); // Arriba
-        DFS(tablero, visitado, fila + 1, columna); // Abajo
-        DFS(tablero, visitado, fila, columna - 1); // Izquierda
-        DFS(tablero, visitado, fila, columna + 1); // Derecha
-    }
 }

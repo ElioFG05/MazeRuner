@@ -58,8 +58,8 @@ partial class Program
                 Console.WriteLine("Usa las teclas de dirección para mover la ficha 2 veces.");
                 ConsoleKey primeraTeclaPresionada = Console.ReadKey(true).Key;
 
-                int nuevaFila = fichasSeleccionadas[turnoActual].Fila;
-                int nuevaColumna = fichasSeleccionadas[turnoActual].Columna;
+                int primeraFila = fichasSeleccionadas[turnoActual].Fila;
+                int primeraColumna = fichasSeleccionadas[turnoActual].Columna;
                 int filaDelta = 0,
                     columnaDelta = 0;
 
@@ -83,21 +83,21 @@ partial class Program
                         continue;
                 }
 
-                int primeraFila = nuevaFila + filaDelta;
-                int primeraColumna = nuevaColumna + columnaDelta;
+                int ActualFila = primeraFila + filaDelta;
+                int ActualColumna = primeraColumna + columnaDelta;
 
                 if (
                     MoverFicha(
                         fichasSeleccionadas[turnoActual],
-                        primeraFila,
-                        primeraColumna,
+                        ActualFila,
+                        ActualColumna,
                         tablero,
                         trampas
                     )
                 )
                 {
-                    nuevaFila = primeraFila;
-                    nuevaColumna = primeraColumna;
+                    primeraFila = ActualFila;
+                    primeraColumna = ActualColumna;
 
                     TableroDrawer.DibujarTablero(tablero, fichasSeleccionadas);
 
@@ -126,8 +126,8 @@ partial class Program
                             continue;
                     }
 
-                    int segundaFila = nuevaFila + filaDelta;
-                    int segundaColumna = nuevaColumna + columnaDelta;
+                    int segundaFila = primeraFila + filaDelta;
+                    int segundaColumna = primeraColumna + columnaDelta;
 
                     if (
                         MoverFicha(
@@ -167,14 +167,6 @@ partial class Program
                     $"{fichasSeleccionadas[turnoActual].Nombre} ha perdido todos sus puntos. ¡El juego ha terminado!"
                 );
                 break; // Sale del bucle y termina el juego
-            }
-
-            // Verificar si la ficha perdió todos los puntos
-            if (!VerificarPuntos(fichasSeleccionadas[turnoActual]))
-            {
-                fichasSeleccionadas.RemoveAt(turnoActual);
-                if (turnoActual >= fichasSeleccionadas.Count)
-                    turnoActual = 0; // Reiniciar el turno si excede el número de fichas
             }
 
             foreach (var ficha in fichasSeleccionadas)
@@ -308,7 +300,7 @@ partial class Program
                     $"{ficha.Nombre} puede atravesar el obstáculo con Paso Fantasma."
                 );
             }
-            // No bloquear las trampas, ya que la ficha puede pasar por ellas igualmente
+
             return true; // Permite el movimiento en cualquier casilla (Obstáculo o Trampa)
         }
 
@@ -320,9 +312,18 @@ partial class Program
         }
 
         // Si la casilla es un camino, trampa u objeto, el movimiento es válido
-        return tablero[fila, columna] == Casilla.Camino
+        if (
+            tablero[fila, columna] == Casilla.Camino
             || tablero[fila, columna] == Casilla.Trampa
-            || tablero[fila, columna] == Casilla.Objeto;
+            || tablero[fila, columna] == Casilla.Objeto
+        )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     static void ActualizarTableroYNotificar(Ficha ficha, Casilla[,] tablero, int fila, int columna)

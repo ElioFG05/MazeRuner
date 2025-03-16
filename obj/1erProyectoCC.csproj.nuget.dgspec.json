@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\1erProyectoCC\\1erProyectoCC.csproj": {}
+    "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\GameProject\\MazeRuner\\1erProyectoCC.csproj": {}
   },
   "projects": {
-    "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\1erProyectoCC\\1erProyectoCC.csproj": {
+    "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\GameProject\\MazeRuner\\1erProyectoCC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\1erProyectoCC\\1erProyectoCC.csproj",
+        "projectUniqueName": "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\GameProject\\MazeRuner\\1erProyectoCC.csproj",
         "projectName": "1erProyectoCC",
-        "projectPath": "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\1erProyectoCC\\1erProyectoCC.csproj",
+        "projectPath": "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\GameProject\\MazeRuner\\1erProyectoCC.csproj",
         "packagesPath": "C:\\Users\\Elio\\.nuget\\packages\\",
-        "outputPath": "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\1erProyectoCC\\obj\\",
+        "outputPath": "D:\\Elio\\Computer Science\\Programacion\\Proyecto(pdf-datos)\\GameProject\\MazeRuner\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Elio\\AppData\\Roaming\\NuGet\\NuGet.Config",
